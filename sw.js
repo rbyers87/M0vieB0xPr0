@@ -40,22 +40,24 @@ self.addEventListener('activate', (event) => {
 
 // Fetch Event
 self.addEventListener('fetch', (event) => {
+    // Bypass the service worker for Google Sign-In requests
+    if (event.request.url.includes('accounts.google.com') || event.request.url.includes('apis.google.com')) {
+        event.respondWith(fetch(event.request));
+        return;
+    }
+
     event.respondWith(
-        fetch(event.request)
-            .catch(() => {
-                return caches.match(event.request)
-                    .then((response) => {
-                        if (response) {
-                            return response;
-                        }
-                        if (event.request.mode === 'navigate') {
-                            return caches.match(OFFLINE_URL);
-                        }
-                        return new Response('', {
-                            status: 408,
-                            statusText: 'Request timed out.'
-                        });
+        caches.match(event.request)
+            .then((response) => {
+                return response || fetch(event.request).catch(() => {
+                    if (event.request.mode === 'navigate') {
+                        return caches.match(OFFLINE_URL);
+                    }
+                    return new Response('', {
+                        status: 408,
+                        statusText: 'Request timed out.'
                     });
+                });
             })
     );
 });
