@@ -1,6 +1,6 @@
 {
-    "name": "PWA Website Wrapper",
-    "short_name": "PWA Wrapper",
+    "name": "Movie Box Pro",
+    "short_name": "MBP",
     "description": "A Progressive Web App wrapper for your website",
     "start_url": "index.html",
     "display": "standalone",
