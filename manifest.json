@@ -2,7 +2,7 @@
     "name": "PWA Website Wrapper",
     "short_name": "PWA Wrapper",
     "description": "A Progressive Web App wrapper for your website",
-    "start_url": "/M0vieB0Pr0/",
+    "start_url": "https://claude.ai",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#2196f3",
