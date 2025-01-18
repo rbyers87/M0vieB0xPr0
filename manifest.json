@@ -2,7 +2,7 @@
     "name": "TikToker",
     "short_name": "TT",
     "description": "A Progressive Web App wrapper for your website",
-    "start_url": "https://www.google.com",
+    "start_url": "index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#2196f3",
