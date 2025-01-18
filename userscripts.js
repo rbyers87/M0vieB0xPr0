@@ -2,7 +2,7 @@
 const userScripts = [
     {
         name: 'Dark Mode Toggle',
-        match: ['*://example.com/*'],
+        match: ['https://www.tiktok.com'],
         description: 'Adds a dark mode toggle button and implements dark mode styling',
         enabled: true,
         code: function() {
