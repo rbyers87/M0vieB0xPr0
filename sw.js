@@ -10,7 +10,7 @@ const ASSETS_TO_CACHE = [
     '/userscripts.js',
     '/icons/icon-192x192.png',
     '/icons/icon-512x512.png',
-    'https://www.example.com' // Preload the start_url
+    'https://www.claude.ai' // Preload the start_url
 ];
 
 // Install Service Worker
