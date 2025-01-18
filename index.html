@@ -3,57 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PWA Wrapper</title>
-    <link rel="manifest" href="/repository-name/manifest.json">
-    <link rel="stylesheet" href="/repository-name/styles.css">
+    <title>PWA Website Wrapper</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
     <meta name="theme-color" content="#2196f3">
-    <link rel="apple-touch-icon" href="/repository-name/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
 </head>
 <body>
     <div id="content">
-        <!-- Fallback Message -->
+        <iframe id="mainFrame" src="https://www.example.com" style="display: none;"></iframe>
         <div id="offlineMessage" style="display: none;">
             <h1>Currently Offline</h1>
             <p>Please check your internet connection and try again.</p>
         </div>
-
-        <!-- Iframe -->
-        <iframe 
-            id="mainFrame" 
-            src="https://claude.ai" 
-            style="display: none; width: 100%; height: 100%; border: none;">
-        </iframe>
     </div>
 
-    <!-- UserScripts -->
-    <script src="/repository-name/userscripts.js"></script>
-
-    <!-- Load Eruda Conditionally -->
-    <script>
-        if (window.location.hostname === 'localhost') {
-            let script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/eruda';
-            document.body.appendChild(script);
-            script.onload = () => eruda.init();
-        }
-    </script>
-
-    <!-- Service Worker and Online Status Logic -->
+    <!-- Load UserScripts -->
+    <script src="userscripts.js"></script>
+    
     <script>
         // Register Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/repository-name/sw.js')
+                navigator.serviceWorker.register('sw.js')
                     .then(registration => {
                         console.log('ServiceWorker registration successful');
                     })
                     .catch(err => {
-                        console.error('ServiceWorker registration failed:', err);
+                        console.log('ServiceWorker registration failed: ', err);
                     });
             });
         }
 
-        // Update Online Status
+        // Check online status
         function updateOnlineStatus() {
             const iframe = document.getElementById('mainFrame');
             const offlineMsg = document.getElementById('offlineMessage');
@@ -67,11 +49,16 @@
             }
         }
 
-        // Event Listeners for Online/Offline
+        // Handle iframe load and inject UserScripts
+        document.getElementById('mainFrame').addEventListener('load', function() {
+            // Inject UserScripts
+            if (window.userScriptManager) {
+                window.userScriptManager.injectScripts(this);
+            }
+        });
+
         window.addEventListener('online', updateOnlineStatus);
         window.addEventListener('offline', updateOnlineStatus);
-
-        // Initial Check
         updateOnlineStatus();
     </script>
 </body>
