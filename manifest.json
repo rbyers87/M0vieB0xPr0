@@ -2,7 +2,7 @@
     "name": "Movie Box Pro",
     "short_name": "MBP",
     "description": "A Progressive Web App wrapper for your website",
-    "start_url": "index.html",
+    "start_url": "https://www.tiktok.com",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#2196f3",
