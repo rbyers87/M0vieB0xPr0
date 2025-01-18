@@ -1,6 +1,6 @@
 {
-    "name": "Movie Box Pro",
-    "short_name": "MBP",
+    "name": "TikToker",
+    "short_name": "TT",
     "description": "A Progressive Web App wrapper for your website",
     "start_url": "https://www.tiktok.com",
     "display": "standalone",
